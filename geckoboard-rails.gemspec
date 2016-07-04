@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split("\n")
   s.homepage    = 'http://github.com/aryrabelo/geckoboard-rails'
   s.license     = 'MIT'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 2.1.2'
 
   s.add_runtime_dependency 'addressable', '~> 2.3', '>= 2.3.3'
   s.add_runtime_dependency 'httparty', '~> 0.10', '>= 0.10.2'
