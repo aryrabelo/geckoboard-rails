@@ -1,0 +1,52 @@
+## Geckoboard API Ruby wrapper
+
+[![Code Climate](https://codeclimate.com/github/jhsu/ducksboard.png)](https://codeclimate.com/github/jhsu/ducksboard)
+[![Build Status](https://travis-ci.org/jhsu/ducksboard.png?branch=simple-slot-push)](https://travis-ci.org/jhsu/ducksboard)
+
+### Configuration
+
+API Key can be set in the environment (such as `~/.bashrc`).
+
+    export GECKOBOARD_API_KEY='YOURKEY'
+
+or in an initializer (such as `config/initializers/ducksboard.rb`)
+
+    Geckoboard.api_key = 'YOURKEY'
+
+### Sending Data (Push API)
+
+Data can be sent to slots in formats specified in the [Geckoboard API
+documentation](http://dev.ducksboard.com/apidoc/slot-kinds).
+
+```ruby
+# Update the value a slot (ie. counter)
+widget = Geckoboard::Widget.new(123)
+widget.update(:value => 20)
+
+# Update a leaderboard
+widget = Geckoboard::Widget.new("leaderboard")
+widget.update(:value => {
+  :boards => [
+    {:name => "person 1", values => [123, 24.5]},
+    {:name => "person 2", values => [224, 21.0]}
+  ]
+})
+```
+
+### Pulling Data (Pull API)
+
+Fetching data from a widget on Geckoboard. Several convinience methods are
+provided to fetch data through the [Geckoboard HTTP Pull
+API](http://dev.ducksboard.com/apidoc/pull-api-http/#resource-endpoints). Each
+pull returns a hash of data with a data at `response['data']`.
+
+```ruby
+widget = Geckoboard::Widget.new(123)
+widget.last(:count => 15)
+
+widget.since(:seconds => 5 * 60)
+
+widget.timespan(:timespan => "weekly", :timezone => "UTC")
+```
+### Thanks to Joseph Hsu
+Based on: https://github.com/jhsu/ducksboard/tree/simple-slot-push
