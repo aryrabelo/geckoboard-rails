@@ -3,8 +3,12 @@ require 'bundler/setup'
 
 require 'minitest/spec'
 require 'minitest/autorun'
-require 'mocha'
+require 'minitest/unit'
+require 'mocha/mini_test'
 require 'webmock/minitest'
 
-require 'ducksboard'
+require 'geckoboard-rails'
 require 'pry'
+
+
+
