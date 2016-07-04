@@ -16,6 +16,7 @@ module Geckoboard
       post(data)
     end
 
+
     # Deletes all data for a given data source.
     #
     # Returns nothing.
@@ -30,7 +31,7 @@ module Geckoboard
     # Returns a fixnum.
     def time_to_unix(time)
       if time.respond_to?(:to_i)
-        time.to_i 
+        time.to_i
       else
         time
       end

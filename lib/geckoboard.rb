@@ -6,10 +6,13 @@ module Geckoboard
   def self.api_key
     @api_key ||= ENV['GECKOBOARD_API_KEY']
   end
+  def self.widget_id
+    @widget_id ||= ENV['GECKOBOARD_WIDGET']
+  end
 end
 
 require 'geckoboard/version'
 require 'geckoboard/request'
 require 'geckoboard/push'
 require 'geckoboard/pull'
-require 'geckoboard/slot'
+require 'geckoboard/widget'
