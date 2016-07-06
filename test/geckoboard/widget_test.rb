@@ -1,4 +1,5 @@
 require 'minitest_helper'
+require 'json'
 
 describe Geckoboard::Widget do
   let(:widget) { Geckoboard::Widget.new(ENV['GECKOBOARD_WIDGET']) }
@@ -17,29 +18,40 @@ describe Geckoboard::Widget do
   describe "Push" do
 
     it "send without data" do
-      puts widget.update
+      VCR.use_cassette('send_without_data') do
+         response = widget.update
+         # response = Net::HTTP.get_response(URI('http://www.iana.org/domains/example/'))
+         # assert_match /Example Domains/, response.body
+         assert_equal '{"message":"empty request body"}', response.body
+
+      end
     end
+
+
 
 
     it "sends data" do
-      data = {:value => Geckoboard.widget_id }
+      VCR.use_cassette('send_with_data') do
+        data = { data: { item: 23, min: { value: 10 }, max: { value: 30 } }}
 
-      widget.expects(:post).with(data)
-      widget.update(data)
+        # widget.expects(:post).with(JSON.parse(data))
+        response = widget.update(data)
+        assert_equal '{"message":"empty request body"}', response.body
+      end
     end
 
-    it "ensures timestamp is unix timestamp" do
-      time = Time.now
-      unix_time = time.to_i
+    # it "ensures timestamp is unix timestamp" do
+    #   time = Time.now
+    #   unix_time = time.to_i
 
-      widget.expects(:post).with({:timestamp => unix_time})
-      widget.update({:timestamp => time})
-    end
+    #   widget.expects(:post).with({:timestamp => unix_time})
+    #   widget.update({:timestamp => time})
+    # end
 
-    it "can be destroyed" do
-      widget.expects(:delete)
-      widget.destroy
-    end
+    # it "can be destroyed" do
+    #   widget.expects(:delete)
+    #   widget.destroy
+    # end
   end # Push
 
 

@@ -1,6 +1,9 @@
+require 'json'
+
 module Geckoboard
   module Push
     include Request
+    
     PUSH_URL = "https://push.geckoboard.com/v1/send"
 
     # Update slot with data.
@@ -12,6 +15,7 @@ module Geckoboard
     # 
     # Returns nothing.
     def update(data={})
+      data = api_key_hash.merge(data)
       data[:timestamp] = time_to_unix(data[:timestamp]) if data[:timestamp]
       post(data)
     end
@@ -35,6 +39,10 @@ module Geckoboard
       else
         time
       end
+    end
+
+    def api_key_hash
+      { :api_key =>  Geckoboard.api_key }
     end
 
     # Internal: Sends http request.

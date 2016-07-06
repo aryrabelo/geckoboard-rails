@@ -1,5 +1,6 @@
 require 'httparty'
 require "addressable/uri"
+require 'json'
 
 module Geckoboard
   class << self ; attr_accessor :api_key end

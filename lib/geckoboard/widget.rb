@@ -2,6 +2,7 @@ module Geckoboard
   class Widget
     include Push
     include Pull
+    include HTTParty
 
     attr_accessor :id
 

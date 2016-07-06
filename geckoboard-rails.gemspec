@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'httparty', '~> 0.10', '>= 0.10.2'
   s.add_runtime_dependency 'json', '~> 1.7', '>= 1.7.7'
   s.add_development_dependency 'rake', '~> 10.0'
-  s.add_development_dependency 'vcr', '2.0'
+  s.add_development_dependency 'vcr', '2.5.0'
   s.add_development_dependency 'minitest', '~> 4.6.2'
   s.add_development_dependency 'webmock', '1.8'
   s.add_development_dependency 'mocha', '~> 1.1.0', '>= 1.1.0'
