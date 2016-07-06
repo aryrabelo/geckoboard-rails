@@ -22,7 +22,7 @@ describe Geckoboard::Widget do
          response = widget.update
          # response = Net::HTTP.get_response(URI('http://www.iana.org/domains/example/'))
          # assert_match /Example Domains/, response.body
-         assert_equal '{"message":"empty request body"}', response.body
+         assert_equal JSON.parse('{"message":"empty request body"}'), JSON.parse(response.body)
 
       end
     end
@@ -36,7 +36,7 @@ describe Geckoboard::Widget do
 
         # widget.expects(:post).with(JSON.parse(data))
         response = widget.update(data)
-        assert_equal '{"message":"empty request body"}', response.body
+        assert_equal JSON.parse('{"success":true}'), JSON.parse(response.body)
       end
     end
 
