@@ -21,7 +21,7 @@ documentation](http://dev.ducksboard.com/apidoc/slot-kinds).
 ```ruby
 # Update the value a slot (ie. counter)
 widget = Geckoboard::Widget.new(123)
-widget.update(:value => 20)
+widget.update({ item: 29, min: { value: 10 }, max: { value: 30 } })
 
 # Update a leaderboard
 widget = Geckoboard::Widget.new("leaderboard")

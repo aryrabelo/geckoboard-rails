@@ -1,5 +1,4 @@
 require 'json'
-
 module Geckoboard
   module Push
     include Request
@@ -15,9 +14,11 @@ module Geckoboard
     # 
     # Returns nothing.
     def update(data={})
-      data = api_key_hash.merge(data)
-      data[:timestamp] = time_to_unix(data[:timestamp]) if data[:timestamp]
-      post(data)
+      set_data = {}
+      set_data[:data] = data
+      set_data = api_key_hash.merge(set_data)
+      set_data[:timestamp] = time_to_unix(data[:timestamp]) if data[:timestamp]
+      post(set_data)
     end
 
 
