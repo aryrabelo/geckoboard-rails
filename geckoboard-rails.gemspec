@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry', '~> 0.9', '>= 0.9.2'
 
   s.post_install_message = <<-DESC
-  Quack! (in real-time)"
+  Geeek! (in real-time)"
 
   ===
 
